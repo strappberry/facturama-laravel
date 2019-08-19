@@ -1,0 +1,26 @@
+{
+    "name": "strappberry/facturama-laravel",
+    "description": "Wrapper del SDK de Facturama para Laravel",
+    "authors": [
+        {
+            "name": "Raúl Luna",
+            "email": "raul.luna@strappberry.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "facturama/facturama-php-sdk": "^2.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Strappberry\\FacturamaLaravel\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Strappberry\\FacturamaLaravel\\FacturamaLaravelServiceProvider"
+            ]
+        }
+    }
+}
