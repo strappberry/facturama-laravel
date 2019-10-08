@@ -3,6 +3,7 @@
 namespace Strappberry\FacturamaLaravel;
 
 use Facturama\Client;
+use Facturama\Exception\RequestException;
 
 class ApiMultiemisor extends ApiCommon
 {
@@ -54,5 +55,16 @@ class ApiMultiemisor extends ApiCommon
     public function listarCfdis()
     {
         return $this->client->get($this->api_prefix.'/cfdis');
+    }
+
+    public function descargarFactura($id, $formato = 'pdf')
+    {
+        try {
+            $respuesta = $this->client->get('cfdi/'.$formato.'/issuedLite/'.$id);
+        } catch (RequestException $exception) {
+            return null;
+        }
+
+        return $respuesta;
     }
 }
