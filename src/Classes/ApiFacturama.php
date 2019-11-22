@@ -3,6 +3,7 @@
 namespace Strappberry\FacturamaLaravel;
 
 use Facturama\Client;
+use Facturama\Exception\RequestException;
 use GuzzleHttp\ClientInterface;
 
 class ApiFacturama
@@ -45,5 +46,32 @@ class ApiFacturama
     public function catalogos()
     {
         return new CatalogosFacturama($this->client);
+    }
+
+    /**
+     * @param $rfc
+     * @throws RequestException
+     * @return array|\stdClass|null
+     */
+    public function informacionDeRFC($rfc)
+    {
+        return $this->client->get('client/status', [
+            'rfc' => $rfc,
+        ]);
+    }
+
+    /**
+     * Regresa si un RFC en válido según la válidación de Facturama
+     *
+     * @param $rfc
+     * @return bool
+     */
+    public function validarRFC($rfc) {
+        try {
+            $informacion_rfc = $this->informacionDeRFC($rfc);
+            return !$informacion_rfc->Cancelado;
+        } catch (RequestException $e) {
+            return false;
+        }
     }
 }

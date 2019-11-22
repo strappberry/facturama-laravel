@@ -1,6 +1,7 @@
 {
     "name": "strappberry/facturama-laravel",
     "description": "Wrapper del SDK de Facturama para Laravel",
+    "license": "MIT",
     "authors": [
         {
             "name": "Raúl Luna",
