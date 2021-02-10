@@ -1,6 +1,6 @@
 <?php
 
-namespace Strappberry\FacturamaLaravel;
+namespace Strappberry\FacturamaLaravel\Classes;
 
 /**
  * Class DireccionCliente

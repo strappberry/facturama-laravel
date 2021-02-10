@@ -27,6 +27,6 @@ class FacturamaLaravelServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../publishable/config/facturama-laravel.php' => config_path('facturama-laravel.php'),
-        ]);
+        ], 'facturama-laravel');
     }
 }
