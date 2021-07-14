@@ -53,6 +53,8 @@ class Cfdi extends CommonClass
         'Emisor' => 'Issuer',
         'Receptor' => 'Receiver',
         'Conceptos' => 'Items',
+        'Subtotal' => 'Subtotal',
+        'Total' => 'Total',
     ];
 
     public function __set($name, $value)

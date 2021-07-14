@@ -36,6 +36,25 @@ class ApiMultiemisor extends ApiCommon
     }
 
     /**
+     * @param  array|CertificadoSelloDigital  $certificado_sello_digital
+     * @return array|\stdClass|null
+     */
+    public function actualizarCertificado($certificado_sello_digital)
+    {
+        if (is_array($certificado_sello_digital)) {
+            $datos = $certificado_sello_digital;
+            $rfc = $certificado_sello_digital['RFC'];
+        } elseif (is_a($certificado_sello_digital, CertificadoSelloDigital::class)) {
+            $datos = $certificado_sello_digital->obtenerDatos();
+            $rfc = $certificado_sello_digital->RFC;
+        } else {
+            return [];
+        }
+
+        return $this->client->put($this->api_prefix.'/csds/'.$rfc, $datos);
+    }
+
+    /**
      * @return array|\stdClass|null
      */
     public function listarCertificados()
