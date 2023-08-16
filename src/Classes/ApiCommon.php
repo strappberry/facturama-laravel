@@ -27,6 +27,10 @@ abstract class ApiCommon
     }
 
     /**
+     * Emitir factura
+     * 
+     * @doc https://github.com/Facturama/facturama-php-sdk/wiki/API-Web#cfdi-40
+     * 
      * @param  array|Cfdi  $cfdi
      * @return array|\stdClass|null
      */
@@ -40,11 +44,33 @@ abstract class ApiCommon
             return [];
         }
 
-        return $this->client->post($this->api_prefix.'/2/cfdis', $datos);
+        return $this->client->post($this->api_prefix . '/3/cfdis', $datos);
     }
 
-    public function descargarCfdi($id, $tipo, $formato = 'pdf')
+    /**
+     * Descargar la factura en el formato especificado
+     * 
+     * @doc https://github.com/Facturama/facturama-php-sdk/wiki/API-Web#descargar-factura
+     *
+     * @param string $id Id de la factura
+     * @param string $tipo Tipo de factura (payroll | received | issued)
+     * @param string $formato Formato de la factura (pdf | xml | html)
+     */
+    public function descargarCfdi($id, $tipo = 'issued', $formato = 'pdf')
     {
-        $this->client->get('/cfdi/'.$formato.'/'.$tipo.'/'.$id);
+        $this->client->get('/cfdi/' . $formato . '/' . $tipo . '/' . $id);
+    }
+
+    /**
+     * Cancelar factura
+     *
+     * @doc https://github.com/Facturama/facturama-php-sdk/wiki/API-Web#cancelar-cfdi
+     * 
+     * @param string $id
+     * @param array $params
+     */
+    public function cancelarCfdi($id, $params = [])
+    {
+        return $this->client->delete("Cfdi/{$id}", $params);
     }
 }
