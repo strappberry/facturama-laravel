@@ -58,7 +58,7 @@ abstract class ApiCommon
      */
     public function descargarCfdi($id, $tipo = 'issued', $formato = 'pdf')
     {
-        $this->client->get('/cfdi/' . $formato . '/' . $tipo . '/' . $id);
+        return $this->client->get('cfdi/' . $formato . '/' . $tipo . '/' . $id);
     }
 
     /**
