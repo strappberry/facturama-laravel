@@ -28,4 +28,14 @@ class ApiWeb extends ApiCommon
     {
         return $this->client->get('Client');
     }
+
+    /**
+     * Consultar la suscripcion de la cuenta
+     *
+     * @return array|\stdClass|null
+     */
+    public function suscripcion()
+    {
+        return $this->client->get('SuscriptionPlan');
+    }
 }
