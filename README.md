@@ -211,5 +211,33 @@ $datosAFacturar = [
 $resultado = $apiMultiemisor->emitirCfdi($datosAFacturar)
 ```
 
+## Consultar datos de una factura
+
+```php
+//Multiemisor
+$api->multiemisor()->consultarCfdi($id, $tipo);
+```
+
+## Consultar acuse cancelación
+
+```php
+$id = '9DLXTRINxFpHGLGEDWu23g2';
+$tipo='issuedLite';
+$formato = 'pdf';
+
+$api->web()->acuse($formato, $tipo, $id);
+```
+
+## Consultar vigencia cfdi
+
+```php
+  $api->web()->consultarEstadoCfdi(
+    'cac0cb22-8406-4812-898a-6f6aec7c85b2',
+    'EKU9003173C9',
+    'CACX7605101P8',
+    '1160.00'
+  );
+```
+
 # Credits
 Desarrollador por [Strappberry](https://strappberry.com/)

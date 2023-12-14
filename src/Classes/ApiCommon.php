@@ -60,17 +60,4 @@ abstract class ApiCommon
     {
         return $this->client->get('cfdi/' . $formato . '/' . $tipo . '/' . $id);
     }
-
-    /**
-     * Cancelar factura
-     *
-     * @doc https://github.com/Facturama/facturama-php-sdk/wiki/API-Web#cancelar-cfdi
-     * 
-     * @param string $id
-     * @param array $params
-     */
-    public function cancelarCfdi($id, $params = [])
-    {
-        return $this->client->delete("Cfdi/{$id}", $params);
-    }
 }
