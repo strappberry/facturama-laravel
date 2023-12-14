@@ -38,4 +38,52 @@ class ApiWeb extends ApiCommon
     {
         return $this->client->get('SuscriptionPlan');
     }
+
+    /**
+     * Consultar los datos de una factura
+     *
+     * @doc https://apisandbox.facturama.mx/docs/api/GET-Cfdi-id_type 
+     *
+     * @param string $id
+     * @param string $tipo API Web: ( payroll | received | issued ) y para API Multiemisor: ( issuedLite )
+     * @return void
+     */
+    public function consultarCfdi($id, $tipo = 'issued')
+    {
+        return $this->client->get("cfdi/{$tipo}/{$id}");
+    }
+
+    /**
+     * Obtener acuse
+     *
+     * @param string $formato Formato del archivo a obtener: ( pdf | html )
+     * @param string $tipo Tipo de comprbante a obtener, puede ser: para facturas de API normal( payroll | issued ) y para API Multiemisor ( issuedLite )
+     * @param string $id Identificador unico de la factura
+     * @return void
+     */
+    public function acuse($formato, $tipo, $id)
+    {
+        return $this->client->get("acuse/{$formato}/{$tipo}/{$id}");
+    }
+
+    /**
+     * Consultar el estado de vigencia de un cfdi
+     *
+     * @doc https://apisandbox.facturama.mx/guias/validaciones/cfdi-status
+     *
+     * @param string $uuid
+     * @param string $rfcEmisor
+     * @param string $rfcReceptor
+     * @param string $total Total con decimales a 2 digitos
+     * @return array|\stdClass|null
+     */
+    public function consultarEstadoCfdi($uuid, $rfcEmisor, $rfcReceptor, $total)
+    {
+        return $this->client->get('cfdi/status', [
+            'uuid' => $uuid,
+            'issuerRfc' => $rfcEmisor,
+            'receiverRfc' => $rfcReceptor,
+            'total' => $total,
+        ]);
+    }
 }

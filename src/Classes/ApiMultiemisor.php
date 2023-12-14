@@ -86,4 +86,28 @@ class ApiMultiemisor extends ApiCommon
 
         return $respuesta;
     }
+
+    /**
+     * Cancelar un CFDI.
+     *
+     * @param string $id Id que proporciona Facturama, este no es el UUID
+     * @param array<{motive: string, uuidReplacement: string}> $params
+     *
+     * @return array|\stdClass|null
+     */
+    public function cancelarCfdi($id, $params)
+    {
+        return $this->client->delete($this->api_prefix . '/cfdis/' . $id, $params);
+    }
+
+    /**
+     * Consultar los detalles de un cfdi.
+     *
+     * @param string $id
+     * @return array|\stdClass|null
+     */
+    public function consultarCfdi($id)
+    {
+        return $this->client->get($this->api_prefix . '/cfdis/' . $id);
+    }
 }
